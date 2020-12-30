@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524F00E4259CF6AA00F79D22 /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F00E3259CF6AA00F79D22 /* ShoppingItem.swift */; };
 		52DD5487259C163E0017B492 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD5486259C163E0017B492 /* AppDelegate.swift */; };
 		52DD5489259C163E0017B492 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD5488259C163E0017B492 /* SceneDelegate.swift */; };
 		52DD548B259C163E0017B492 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DD548A259C163E0017B492 /* MainView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		524F00E3259CF6AA00F79D22 /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		52DD5483259C163E0017B492 /* Shopping List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopping List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52DD5486259C163E0017B492 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52DD5488259C163E0017B492 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				52DD5488259C163E0017B492 /* SceneDelegate.swift */,
 				52DD548A259C163E0017B492 /* MainView.swift */,
 				52DD548C259C163E0017B492 /* Main.storyboard */,
+				524F00E3259CF6AA00F79D22 /* ShoppingItem.swift */,
 				52DD548F259C16400017B492 /* Assets.xcassets */,
 				52DD5491259C16400017B492 /* LaunchScreen.storyboard */,
 				52DD5494259C16400017B492 /* Info.plist */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524F00E4259CF6AA00F79D22 /* ShoppingItem.swift in Sources */,
 				52DD548B259C163E0017B492 /* MainView.swift in Sources */,
 				52DD5487259C163E0017B492 /* AppDelegate.swift in Sources */,
 				52DD5489259C163E0017B492 /* SceneDelegate.swift in Sources */,
