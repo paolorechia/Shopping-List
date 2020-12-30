@@ -8,7 +8,7 @@
 import UIKit
 
 class ShoppingItemViewController:
-    UIViewController {
+    UIViewController, UITextFieldDelegate {
     // MARK: Properties
     var shoppingItem = ShoppingItem(name: "", priceUnit: 0, priceCents: 0, quantity: 1, brand: "")
 
@@ -18,8 +18,9 @@ class ShoppingItemViewController:
     @IBOutlet weak var priceCentsField: UITextField!
     @IBOutlet weak var quantityField: UILabel!
     @IBOutlet var brandField: [UITextField]!
-
     @IBOutlet weak var saveButton: UIButton!
+    
+    
     // MARK: Actions
 
     // MARK: EditingDidBegin
@@ -39,15 +40,17 @@ class ShoppingItemViewController:
     @IBAction func itemNameEditingDidEnd(_ sender: UITextField) {
         print("Edited name")
         shoppingItem.name = sender.text ?? ""
-        if !shoppingItem.name.isEmpty {
-            saveButton.isEnabled = true
-        }
+        enableSave()
+
     }
     @IBAction func priceUnitEditingDidEnd(_ sender: UITextField) {
+        print("Edited price Unit")
         shoppingItem.priceUnit = Int(String(sender.text ?? "0")) ?? 0
+        enableSave()
     }
     @IBAction func priceCentsEditingDidEnd(_ sender: UITextField) {
         shoppingItem.priceCents = Int(String(sender.text ?? "0")) ?? 0
+        enableSave()
     }
     @IBAction func touchUpPlusAction(_ sender: Any) {
         print("Pressed plus")
@@ -66,6 +69,7 @@ class ShoppingItemViewController:
     @IBAction func brandEditingDidEnd(_ sender: UITextField) {
         print("Edited brand")
         shoppingItem.brand = sender.text ?? ""
+        enableSave()
     }
     @IBAction func touchUpSaveButton(_ sender: Any) {
         print("Save button pressed")
@@ -81,9 +85,17 @@ class ShoppingItemViewController:
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         disableSave()
+        itemNameField.delegate = self
+        priceUnitField.delegate = self
+        priceCentsField.delegate = self
     }
     
-
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -97,5 +109,16 @@ class ShoppingItemViewController:
     
     func disableSave() {
         saveButton.isEnabled = false
+    }
+    
+    func shouldSaveBeEnabled() -> Bool {
+        return ((!shoppingItem.name.isEmpty) && (shoppingItem.priceUnit > 0 || shoppingItem.priceCents > 0))
+    }
+    func enableSave() {
+        if shouldSaveBeEnabled() {
+            print("Enabled save.")
+            saveButton.isEnabled = true
+            
+        }
     }
 }
