@@ -9,6 +9,8 @@ import UIKit
 
 class ShoppingItemTableViewController: UITableViewController {
 
+    var shoppingItems = [ShoppingItem]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +19,8 @@ class ShoppingItemTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        loadSampleItems()
     }
 
     // MARK: - Table view data source
@@ -27,18 +31,15 @@ class ShoppingItemTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return shoppingItems.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemCell", for: indexPath)
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -84,5 +85,14 @@ class ShoppingItemTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: Private Methods
+    
+    func loadSampleItems() {
+        let item1 = ShoppingItem(name: "Example", priceUnit: 2, priceCents: 51, quantity: 3, brand: "Br4nd")
+        let item2 = ShoppingItem(name: "Another item", priceUnit: 23, priceCents: 0, quantity: 5, brand: "Br4nd")
+        let item3 = ShoppingItem(name: "A Longer Item Name", priceUnit: 92, priceCents: 99, quantity: 1, brand: "Br4nd")
+        shoppingItems += [item1, item2, item3]
+    }
 
 }
