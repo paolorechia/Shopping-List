@@ -13,11 +13,13 @@ class ShoppingItem {
     var priceUnit: Int
     var priceCents: Int
     var brand: String
+    var quantity: Int
 
-    init(name: String, priceUnit: Int, priceCents: Int, brand: String) {
+    init(name: String, priceUnit: Int, priceCents: Int, quantity: Int, brand: String) {
         self.name = name
         self.priceUnit = priceUnit
         self.priceCents = priceCents
         self.brand = brand
+        self.quantity = quantity
     }
 }

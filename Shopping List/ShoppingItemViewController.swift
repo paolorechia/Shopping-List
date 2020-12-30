@@ -8,30 +8,79 @@
 import UIKit
 
 class ShoppingItemViewController:
-    
-    // MARK: Properties
     UIViewController {
+    // MARK: Properties
+    var shoppingItem = ShoppingItem(name: "", priceUnit: 0, priceCents: 0, quantity: 1, brand: "")
+
+    // MARK: Outlets
     @IBOutlet weak var itemNameField: UITextField!
-     @IBOutlet weak var priceUnitField: UITextField!
-     @IBOutlet weak var priceCentsField: UITextField!
-
+    @IBOutlet weak var priceUnitField: UITextField!
+    @IBOutlet weak var priceCentsField: UITextField!
     @IBOutlet weak var quantityField: UILabel!
+    @IBOutlet var brandField: [UITextField]!
 
+    @IBOutlet weak var saveButton: UIButton!
+    // MARK: Actions
+
+    // MARK: EditingDidBegin
+    @IBAction func itemNameEditingDidBegin(_ sender: Any) {
+        disableSave()
+    }
+    @IBAction func priceUnitEditingDidBegin(_ sender: Any) {
+        disableSave()
+    }
+    @IBAction func priceCentsEditingDidBegin(_ sender: Any) {
+        disableSave()
+    }
+    @IBAction func brandEditingDidBegin(_ sender: Any) {
+        disableSave()
+    }
+    // MARK: EditingDidEnd
+    @IBAction func itemNameEditingDidEnd(_ sender: UITextField) {
+        print("Edited name")
+        shoppingItem.name = sender.text ?? ""
+        if !shoppingItem.name.isEmpty {
+            saveButton.isEnabled = true
+        }
+    }
+    @IBAction func priceUnitEditingDidEnd(_ sender: UITextField) {
+        shoppingItem.priceUnit = Int(String(sender.text ?? "0")) ?? 0
+    }
+    @IBAction func priceCentsEditingDidEnd(_ sender: UITextField) {
+        shoppingItem.priceCents = Int(String(sender.text ?? "0")) ?? 0
+    }
     @IBAction func touchUpPlusAction(_ sender: Any) {
         print("Pressed plus")
+        shoppingItem.quantity += 1
+        quantityField.text = String(shoppingItem.quantity)
     }
     
     @IBAction func touchUpMinusAction(_ sender: Any) {
         print("Pressed minus")
-    }
-    @IBOutlet var brandField: [UITextField]!
+        if (shoppingItem.quantity > 1) {
+            shoppingItem.quantity = shoppingItem.quantity - 1
+            quantityField.text = String(shoppingItem.quantity)
 
+        }
+    }
+    @IBAction func brandEditingDidEnd(_ sender: UITextField) {
+        print("Edited brand")
+        shoppingItem.brand = sender.text ?? ""
+    }
+    @IBAction func touchUpSaveButton(_ sender: Any) {
+        print("Save button pressed")
+        print(shoppingItem)
+        print("Name: ", shoppingItem.name, "; Brand: ", shoppingItem.brand,
+            "PriceUnit:", shoppingItem.priceUnit,
+              "PriceCents:", shoppingItem.priceCents,
+              "Quantity:", shoppingItem.quantity)
+    }
     
     // MARK: Default properties
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        disableSave()
     }
     
 
@@ -44,5 +93,9 @@ class ShoppingItemViewController:
         // Pass the selected object to the new view controller.
     }
     */
-
+    // MARK: Private Methods
+    
+    func disableSave() {
+        saveButton.isEnabled = false
+    }
 }
