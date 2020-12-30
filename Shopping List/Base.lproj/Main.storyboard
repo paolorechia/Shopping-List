@@ -361,12 +361,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="90D-v8-oYn"/>
                     <connections>
+                        <outlet property="brandField" destination="KaT-ky-v3p" id="rLd-Fm-EZ2"/>
                         <outlet property="itemNameField" destination="uLN-1Y-Hhe" id="fXr-Ds-Y8I"/>
                         <outlet property="priceCentsField" destination="0hK-PK-35E" id="9P9-BX-wxF"/>
                         <outlet property="priceUnitField" destination="IK3-82-cN5" id="LMp-cw-JI7"/>
                         <outlet property="quantityField" destination="Jg6-rL-8Mo" id="xOR-X8-TbW"/>
                         <outlet property="saveButton" destination="61P-j7-2kW" id="KO1-jc-2lk"/>
-                        <outletCollection property="brandField" destination="KaT-ky-v3p" collectionClass="NSMutableArray" id="IP7-kr-ivf"/>
                     </connections>
                 </viewController>
             </objects>

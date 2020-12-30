@@ -17,7 +17,7 @@ class ShoppingItemViewController:
     @IBOutlet weak var priceUnitField: UITextField!
     @IBOutlet weak var priceCentsField: UITextField!
     @IBOutlet weak var quantityField: UILabel!
-    @IBOutlet var brandField: [UITextField]!
+    @IBOutlet weak var brandField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
     
@@ -88,6 +88,7 @@ class ShoppingItemViewController:
         itemNameField.delegate = self
         priceUnitField.delegate = self
         priceCentsField.delegate = self
+        brandField.delegate = self
     }
     
     // MARK: UITextFieldDelegate
