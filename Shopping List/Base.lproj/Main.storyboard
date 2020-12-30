@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H86-eu-esi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4SS-mg-5OM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="194" y="536"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Shopping Item Table View Controller-->
         <scene sceneID="eh6-Mm-weq">
             <objects>
-                <tableViewController id="4SS-mg-5OM" sceneMemberID="viewController">
+                <tableViewController id="4SS-mg-5OM" customClass="ShoppingItemTableViewController" customModule="Shopping_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IyO-rk-T0f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="8h0-rf-me1">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="8h0-rf-me1" customClass="ShoppingItemTableViewCell" customModule="Shopping_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8h0-rf-me1" id="Y0X-Xk-4SK">
@@ -176,6 +176,11 @@
                                         <constraint firstItem="DFY-0k-qGC" firstAttribute="top" secondItem="RDF-Zs-YOW" secondAttribute="bottom" constant="8" id="jcC-KP-N5r"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="itemNameLabel" destination="XWt-fg-643" id="HFP-Lv-DLc"/>
+                                    <outlet property="priceLabel" destination="EkQ-IP-Ow7" id="TvZ-TS-sNi"/>
+                                    <outlet property="quantityLabel" destination="DFY-0k-qGC" id="Hbc-sn-rC2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
