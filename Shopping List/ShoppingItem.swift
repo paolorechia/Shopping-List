@@ -8,12 +8,12 @@
 import UIKit
 
 class ShoppingItem {
-    
+
     var name: String
     var priceUnit: Int
     var priceCents: Int
     var brand: String
-    
+
     init(name: String, priceUnit: Int, priceCents: Int, brand: String) {
         self.name = name
         self.priceUnit = priceUnit

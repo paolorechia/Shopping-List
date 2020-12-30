@@ -208,12 +208,12 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbW-RH-qc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="H86-eu-esi" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iXd-Bo-CwI">
+                    <view key="view" contentMode="scaleToFill" id="iXd-Bo-CwI" customClass="ShoppingItemView" customModule="Shopping_List" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-LO-SQc">
-                                <rect key="frame" x="57" y="268.5" width="300" height="305"/>
+                                <rect key="frame" x="57" y="259" width="300" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9DU-4v-mCN">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
@@ -262,27 +262,45 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Z1t-jF-mWM">
-                                        <rect key="frame" x="0.0" y="128" width="300" height="32"/>
+                                        <rect key="frame" x="0.0" y="128" width="300" height="51"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8V-SU-AiN">
-                                                <rect key="frame" x="0.0" y="0.0" width="65" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="65" height="51"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemBlueColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg6-rL-8Mo">
-                                                <rect key="frame" x="132" y="0.0" width="7.5" height="32"/>
+                                                <rect key="frame" x="129" y="0.0" width="7.5" height="51"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="lM1-g0-q05">
-                                                <rect key="frame" x="206" y="0.0" width="94" height="32"/>
-                                            </stepper>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="n2F-C5-OHr">
+                                                <rect key="frame" x="200" y="0.0" width="100" height="51"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvQ-Oa-hdz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="51"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                        <state key="normal" title="+"/>
+                                                        <connections>
+                                                            <action selector="touchUpPlusAction:" destination="iXd-Bo-CwI" eventType="touchUpInside" id="oa0-FH-WpE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kH3-xl-WAM">
+                                                        <rect key="frame" x="70" y="0.0" width="30" height="51"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                        <state key="normal" title="-"/>
+                                                        <connections>
+                                                            <action selector="touchUpMinusAction:" destination="iXd-Bo-CwI" eventType="touchUpInside" id="HfD-Af-G8M"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3RM-Rf-SPI">
-                                        <rect key="frame" x="0.0" y="190" width="300" height="34"/>
+                                        <rect key="frame" x="0.0" y="209" width="300" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3o-S8-pY4">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="34"/>
@@ -301,9 +319,12 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61P-j7-2kW">
-                                        <rect key="frame" x="0.0" y="254" width="300" height="51"/>
+                                        <rect key="frame" x="0.0" y="273" width="300" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveButtonTouchUpAction:" destination="iXd-Bo-CwI" eventType="touchUpInside" id="oIC-cZ-dIi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -321,6 +342,13 @@
                             <constraint firstItem="YEb-LO-SQc" firstAttribute="centerX" secondItem="iXd-Bo-CwI" secondAttribute="centerX" id="NqB-SA-Bov"/>
                             <constraint firstItem="YEb-LO-SQc" firstAttribute="centerY" secondItem="iXd-Bo-CwI" secondAttribute="centerY" id="ghq-wz-cXp"/>
                         </constraints>
+                        <connections>
+                            <outlet property="itemNameField" destination="uLN-1Y-Hhe" id="DMK-U1-IS0"/>
+                            <outlet property="priceCentsField" destination="0hK-PK-35E" id="MOA-tk-7kl"/>
+                            <outlet property="priceUnitField" destination="IK3-82-cN5" id="zGa-B1-spk"/>
+                            <outlet property="quantityField" destination="Jg6-rL-8Mo" id="a8H-Lj-9qU"/>
+                            <outletCollection property="brandField" destination="KaT-ky-v3p" collectionClass="NSMutableArray" id="x0x-hs-twY"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="90D-v8-oYn"/>
                 </viewController>
