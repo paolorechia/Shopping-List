@@ -203,11 +203,11 @@
             </objects>
             <point key="canvasLocation" x="1153.6231884057972" y="535.71428571428567"/>
         </scene>
-        <!--View Controller-->
+        <!--Shopping Item View Controller-->
         <scene sceneID="Nyn-Sc-MBc">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbW-RH-qc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="H86-eu-esi" sceneMemberID="viewController">
+                <viewController id="H86-eu-esi" customClass="ShoppingItemViewController" customModule="Shopping_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXd-Bo-CwI" customClass="ShoppingItemView" customModule="Shopping_List" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +284,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                         <state key="normal" title="+"/>
                                                         <connections>
-                                                            <action selector="touchUpPlusAction:" destination="iXd-Bo-CwI" eventType="touchUpInside" id="oa0-FH-WpE"/>
+                                                            <action selector="touchUpPlusAction:" destination="H86-eu-esi" eventType="touchUpInside" id="JBr-cC-qPw"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kH3-xl-WAM">
@@ -292,7 +292,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                         <state key="normal" title="-"/>
                                                         <connections>
-                                                            <action selector="touchUpMinusAction:" destination="iXd-Bo-CwI" eventType="touchUpInside" id="HfD-Af-G8M"/>
+                                                            <action selector="touchUpMinusAction:" destination="H86-eu-esi" eventType="touchUpInside" id="JVu-aW-Fuy"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -342,18 +342,18 @@
                             <constraint firstItem="YEb-LO-SQc" firstAttribute="centerX" secondItem="iXd-Bo-CwI" secondAttribute="centerX" id="NqB-SA-Bov"/>
                             <constraint firstItem="YEb-LO-SQc" firstAttribute="centerY" secondItem="iXd-Bo-CwI" secondAttribute="centerY" id="ghq-wz-cXp"/>
                         </constraints>
-                        <connections>
-                            <outlet property="itemNameField" destination="uLN-1Y-Hhe" id="DMK-U1-IS0"/>
-                            <outlet property="priceCentsField" destination="0hK-PK-35E" id="MOA-tk-7kl"/>
-                            <outlet property="priceUnitField" destination="IK3-82-cN5" id="zGa-B1-spk"/>
-                            <outlet property="quantityField" destination="Jg6-rL-8Mo" id="a8H-Lj-9qU"/>
-                            <outletCollection property="brandField" destination="KaT-ky-v3p" collectionClass="NSMutableArray" id="x0x-hs-twY"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="90D-v8-oYn"/>
+                    <connections>
+                        <outlet property="itemNameField" destination="uLN-1Y-Hhe" id="BbV-dJ-zA8"/>
+                        <outlet property="priceCentsField" destination="0hK-PK-35E" id="9P9-BX-wxF"/>
+                        <outlet property="priceUnitField" destination="IK3-82-cN5" id="LMp-cw-JI7"/>
+                        <outlet property="quantityField" destination="Jg6-rL-8Mo" id="xOR-X8-TbW"/>
+                        <outletCollection property="brandField" destination="KaT-ky-v3p" collectionClass="NSMutableArray" id="IP7-kr-ivf"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2562.3188405797105" y="535.71428571428567"/>
+            <point key="canvasLocation" x="2510" y="520"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AtN-0r-Peb">
