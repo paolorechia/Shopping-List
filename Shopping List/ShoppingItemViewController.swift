@@ -19,6 +19,7 @@ class ShoppingItemViewController:
     @IBOutlet weak var quantityField: UILabel!
     @IBOutlet weak var brandField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     
     // MARK: Actions
@@ -71,6 +72,13 @@ class ShoppingItemViewController:
         shoppingItem.brand = sender.text ?? ""
         enableSave()
     }
+    
+    // MARK: TouchUp Actions
+    @IBAction func touchUpCancelButton(_ sender: Any) {
+        print("Cancel button pressed")
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction func touchUpSaveButton(_ sender: Any) {
         print("Save button pressed")
         print(shoppingItem)
@@ -79,6 +87,7 @@ class ShoppingItemViewController:
               "PriceCents:", shoppingItem.priceCents,
               "Quantity:", shoppingItem.quantity)
     }
+
     
     // MARK: Default properties
     override func viewDidLoad() {

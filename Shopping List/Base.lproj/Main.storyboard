@@ -118,6 +118,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-0x-g2J">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
                                             <state key="normal" title="Add Item"/>
+                                            <connections>
+                                                <segue destination="4MW-49-LG8" kind="presentation" id="A0r-tS-ImH"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -206,16 +209,16 @@
             </objects>
             <point key="canvasLocation" x="1153.6231884057972" y="535.71428571428567"/>
         </scene>
-        <!--Shopping Item View Controller-->
+        <!--New Item-->
         <scene sceneID="Nyn-Sc-MBc">
             <objects>
                 <viewController id="H86-eu-esi" customClass="ShoppingItemViewController" customModule="Shopping_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXd-Bo-CwI" customClass="ShoppingItemView" customModule="Shopping_List" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="YEb-LO-SQc">
-                                <rect key="frame" x="57" y="286" width="300" height="324"/>
+                                <rect key="frame" x="57" y="259" width="300" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9DU-4v-mCN">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
@@ -336,14 +339,29 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61P-j7-2kW">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="jrt-1g-lnj">
                                         <rect key="frame" x="0.0" y="273" width="300" height="51"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <state key="normal" title="Save"/>
-                                        <connections>
-                                            <action selector="touchUpSaveButton:" destination="H86-eu-esi" eventType="touchUpInside" id="bVa-E5-8pE"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grM-pi-SBY">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.5" height="51"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="touchUpCancelButton:" destination="H86-eu-esi" eventType="touchUpInside" id="rjT-Xu-nVd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61P-j7-2kW">
+                                                <rect key="frame" x="176.5" y="0.0" width="123.5" height="51"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="touchUpSaveButton:" destination="H86-eu-esi" eventType="touchUpInside" id="bVa-E5-8pE"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="5YB-si-RHe"/>
@@ -361,9 +379,10 @@
                             <constraint firstItem="YEb-LO-SQc" firstAttribute="centerY" secondItem="iXd-Bo-CwI" secondAttribute="centerY" id="ghq-wz-cXp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="90D-v8-oYn"/>
+                    <navigationItem key="navigationItem" title="New Item" id="90D-v8-oYn"/>
                     <connections>
                         <outlet property="brandField" destination="KaT-ky-v3p" id="rLd-Fm-EZ2"/>
+                        <outlet property="cancelButton" destination="grM-pi-SBY" id="7df-PG-pkk"/>
                         <outlet property="itemNameField" destination="uLN-1Y-Hhe" id="fXr-Ds-Y8I"/>
                         <outlet property="priceCentsField" destination="0hK-PK-35E" id="9P9-BX-wxF"/>
                         <outlet property="priceUnitField" destination="IK3-82-cN5" id="LMp-cw-JI7"/>
@@ -373,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbW-RH-qc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2510" y="520"/>
+            <point key="canvasLocation" x="3418.840579710145" y="519.64285714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AtN-0r-Peb">
@@ -391,6 +410,24 @@
             </objects>
             <point key="canvasLocation" x="-912" y="536"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x2z-sH-60q">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4MW-49-LG8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Fw-y7-Uvi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="H86-eu-esi" kind="relationship" relationship="rootViewController" id="EBP-MP-gBu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qnl-UD-pwP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2508.6956521739135" y="519.64285714285711"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ShoppingKart" width="256" height="256"/>
@@ -402,6 +439,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
