@@ -86,7 +86,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="6" id="oSI-qq-54S">
-                            <rect key="frame" x="0.0" y="99.5" width="414" height="99"/>
+                            <rect key="frame" x="0.0" y="136" width="414" height="99"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="EJM-rq-k53">
@@ -127,11 +127,11 @@
                             </subviews>
                         </stackView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingItemCell" id="8h0-rf-me1" customClass="ShoppingItemTableViewCell" customModule="Shopping_List" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingItemCell" rowHeight="80" id="8h0-rf-me1" customClass="ShoppingItemTableViewCell" customModule="Shopping_List" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8h0-rf-me1" id="Y0X-Xk-4SK">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTc-Cf-uoh">
@@ -142,13 +142,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDF-Zs-YOW">
-                                            <rect key="frame" x="329" y="-25.5" width="65" height="20.5"/>
+                                            <rect key="frame" x="329" y="11" width="65" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yy-zM-25i">
-                                            <rect key="frame" x="186" y="-24.5" width="39" height="20.5"/>
+                                            <rect key="frame" x="186" y="12" width="39" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -160,7 +160,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkQ-IP-Ow7">
-                                            <rect key="frame" x="186" y="4" width="91" height="20.5"/>
+                                            <rect key="frame" x="186" y="40.5" width="91" height="20.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="91" id="4bQ-nY-w7O"/>
                                             </constraints>
@@ -169,7 +169,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFY-0k-qGC">
-                                            <rect key="frame" x="329" y="3" width="65" height="20.5"/>
+                                            <rect key="frame" x="329" y="39.5" width="65" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -358,6 +358,7 @@
                                                 <state key="normal" title="Save"/>
                                                 <connections>
                                                     <action selector="touchUpSaveButton:" destination="H86-eu-esi" eventType="touchUpInside" id="bVa-E5-8pE"/>
+                                                    <segue destination="ota-TK-ZvG" kind="unwind" unwindAction="unwindToTableWithSender:" id="uPH-UR-Uu7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -391,6 +392,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbW-RH-qc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ota-TK-ZvG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3418.840579710145" y="519.64285714285711"/>
         </scene>

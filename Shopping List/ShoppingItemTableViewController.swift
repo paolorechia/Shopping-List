@@ -35,8 +35,14 @@ class ShoppingItemTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemCell", for: indexPath) as? ShoppingItemTableViewCell else {
+            fatalError("Cell is not instance of ShoppingItemCell")
+        }
+        let shoppingItem = shoppingItems[indexPath.row]
 
+        cell.itemNameLabel.text = shoppingItem.name
+        cell.priceLabel.text = "R$\(shoppingItem.priceUnit),\(shoppingItem.priceCents)"
+        cell.quantityLabel.text = String(shoppingItem.quantity)
         return cell
     }
     
@@ -85,6 +91,18 @@ class ShoppingItemTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToTable(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? ShoppingItemViewController {
+            
+            let shoppingItem = sourceViewController.shoppingItem
+            
+            let newIndexPath = IndexPath(row: shoppingItems.count, section: 0)
+
+            shoppingItems.append(shoppingItem)
+            tableView.insertRows(at: [newIndexPath], with: UITableView.RowAnimation.right)
+        }
+    }
     
     // MARK: Private Methods
     
