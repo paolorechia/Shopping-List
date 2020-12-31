@@ -109,6 +109,11 @@ class ShoppingItemTableViewController: UITableViewController {
         let item2 = ShoppingItem(name: "Another item", priceUnit: 23, priceCents: 0, quantity: 5, brand: "Br4nd")
         let item3 = ShoppingItem(name: "A Longer Item Name", priceUnit: 92, priceCents: 99, quantity: 1, brand: "Br4nd")
         shoppingItems += [item1, item2, item3]
+        shoppingItems += [item1, item2, item3]
+        shoppingItems += [item1, item2, item3]
+        shoppingItems += [item1, item2, item3]
+        shoppingItems += [item1, item2, item3]
+        shoppingItems += [item1, item2, item3]
     }
 
 }

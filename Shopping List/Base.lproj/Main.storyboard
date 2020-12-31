@@ -101,26 +101,26 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQt-B8-PPC">
                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="systemBlueColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKX-yO-bwe">
                                                     <rect key="frame" x="138" y="0.0" width="138" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="systemBlueColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BJ-2Z-3JH">
                                                     <rect key="frame" x="276" y="0.0" width="138" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="systemBlueColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="bottom" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12D-1j-W7b">
                                             <rect key="frame" x="0.0" y="28.5" width="414" height="15.5"/>
-                                            <color key="backgroundColor" systemColor="labelColor"/>
+                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="rmm-Eu-feh"/>
                                             </constraints>
@@ -142,7 +142,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPU-az-dUw">
                                     <rect key="frame" x="0.0" y="26" width="414" height="1"/>
-                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="bCQ-8a-hfw"/>
                                     </constraints>
@@ -172,7 +172,7 @@
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1a-85-AyE">
                                     <rect key="frame" x="0.0" y="59.5" width="414" height="1"/>
-                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="V1K-4c-7lu"/>
                                     </constraints>
@@ -502,9 +502,6 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
