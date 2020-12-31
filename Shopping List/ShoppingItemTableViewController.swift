@@ -9,7 +9,13 @@ import UIKit
 
 class ShoppingItemTableViewController: UITableViewController {
 
+    @IBOutlet weak var totalQuantityLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+
     var shoppingItems = [ShoppingItem]()
+    var totalQuantity: Int = 0
+    var totalPriceUnits: Int = 0
+    var totalPriceCents: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +28,7 @@ class ShoppingItemTableViewController: UITableViewController {
 
         
         loadSampleItems()
+        updateTotals()
     }
 
     // MARK: - Table view data source
@@ -60,6 +67,7 @@ class ShoppingItemTableViewController: UITableViewController {
             // Delete the row from the data source
             shoppingItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            updateTotals()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -99,6 +107,7 @@ class ShoppingItemTableViewController: UITableViewController {
 
             shoppingItems.append(shoppingItem)
             tableView.insertRows(at: [newIndexPath], with: UITableView.RowAnimation.right)
+            updateTotals()
         }
     }
     
@@ -116,4 +125,34 @@ class ShoppingItemTableViewController: UITableViewController {
         shoppingItems += [item1, item2, item3]
     }
 
+    func updateTotals() {
+        calculateTotalValues()
+        updateTotalLabels()
+
+    }
+
+    func calculateTotalValues() {
+        var unitTotal = 0
+        var centsTotal = 0
+        var quantityTotal = 0
+        for item in shoppingItems {
+            unitTotal += item.priceUnit
+            centsTotal += item.priceCents
+            quantityTotal += item.quantity
+        }
+        if centsTotal >= 100 {
+            let newUnits = centsTotal / 100
+            let centsRemainder = centsTotal % 100
+            unitTotal += newUnits
+            centsTotal = centsRemainder
+        }
+        self.totalQuantity = quantityTotal
+        self.totalPriceUnits = unitTotal
+        self.totalPriceCents = centsTotal
+    }
+    
+    func updateTotalLabels() {
+        totalPriceLabel.text = "R$\(self.totalPriceUnits),\(self.totalPriceCents)"
+        totalQuantityLabel.text = String(self.totalQuantity)
+    }
 }
