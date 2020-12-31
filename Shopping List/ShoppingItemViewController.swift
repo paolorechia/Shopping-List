@@ -20,8 +20,7 @@ class ShoppingItemViewController:
     @IBOutlet weak var brandField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    
-    
+
     // MARK: Actions
 
     // MARK: EditingDidBegin
@@ -124,11 +123,11 @@ class ShoppingItemViewController:
     func shouldSaveBeEnabled() -> Bool {
         return ((!shoppingItem.name.isEmpty) && (shoppingItem.priceUnit > 0 || shoppingItem.priceCents > 0))
     }
+
     func enableSave() {
         if shouldSaveBeEnabled() {
             print("Enabled save.")
             saveButton.isEnabled = true
-            
         }
     }
 }
