@@ -29,7 +29,9 @@ struct ShoppingListView: View {
                     Button(action: finishShopping) {
                         Text("Finish")
                     }
-
+                    .frame(width: 2000, height: 60)
+                    .font(.title2)
+                    .border(Color.blue, width: 1)
                 }
             }
             .toolbar(content: {
@@ -42,6 +44,7 @@ struct ShoppingListView: View {
                 }
             })
         }.navigationBarHidden(true)
+
     }
     
     private func finishShopping() {
