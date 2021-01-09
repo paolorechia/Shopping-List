@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShoppingListView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) var presentationMode
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingItem.name, ascending: true)],
@@ -16,13 +17,22 @@ struct ShoppingListView: View {
     private var items: FetchedResults<ShoppingItem>
 
     var body: some View {
-            List {
-                ForEach(items) { item in
-                    Text("\(item.name!)")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(items) { item in
+                        Text("\(item.name!)")
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
+                HStack {
+                    Button(action: finishShopping) {
+                        Text("Finish")
+                    }
+
+                }
             }
-            .toolbar {
+            .toolbar(content: {
                 HStack {
                     EditButton()
                         .padding()
@@ -30,7 +40,12 @@ struct ShoppingListView: View {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
-            }
+            })
+        }.navigationBarHidden(true)
+    }
+    
+    private func finishShopping() {
+        self.presentationMode.wrappedValue.dismiss()
     }
 
     private func addItem() {
@@ -67,6 +82,13 @@ struct ShoppingListView: View {
 
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
+        ShoppingListPreviewWrapper()
+    }
+}
+
+struct ShoppingListPreviewWrapper: View {
+    
+    var body: some View {
         ShoppingListView().previewDevice("iPhone 11").environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

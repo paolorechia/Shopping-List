@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     var body: some View {
         NavigationView {
             VStack() {

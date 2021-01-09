@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShoppingItemView: View {
+    @Environment(\.presentationMode) var presentationMode
+
     @State var itemName: String = "";
     @State var itemPriceUnit: String = "0";
     @State var itemPriceCents: String = "0";
@@ -59,14 +61,23 @@ struct ShoppingItemView: View {
         }
         .padding()
         .navigationTitle("Add Item")
+
     }
     private func saveNewItem() {
         print("Save item!")
+        self.presentationMode.wrappedValue.dismiss()
+        print("Dismissed")
     }
 }
 
 struct ShoppingItemView_Previews: PreviewProvider {
     static var previews: some View {
+        StatefulShoppingItemView()
+    }
+}
+
+struct StatefulShoppingItemView: View {
+    var body: some View {
         ShoppingItemView()
     }
 }
