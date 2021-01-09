@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ShoppingItemView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @Environment(\.presentationMode) var presentationMode
 
-    @State var itemName: String = "";
-    @State var itemPriceUnit: String = "0";
-    @State var itemPriceCents: String = "0";
-    @State var itemQuantity: String = "0";
-    @State var itemBrand: String = "";
+    @Binding var itemName: String;
+    @Binding var itemPriceUnit: String;
+    @Binding var itemPriceCents: String;
+    @Binding var itemQuantity: String;
+    @Binding var itemBrand: String;
+    
+    @State var priceString: String = "0,00"
     
     var body: some View {
         VStack {
@@ -30,10 +34,10 @@ struct ShoppingItemView: View {
                     .frame(width: 150)
             }
             HStack {
-                Text("Name")
+                Text("Price")
                     .frame(width: 150)
                     .foregroundColor(Color.blue)
-                TextField("name", text: $itemName)
+                TextField("name", text: $priceString)
                     .frame(width: 150)
             }
             HStack {
@@ -48,7 +52,7 @@ struct ShoppingItemView: View {
                     .frame(width: 150)
                     .foregroundColor(Color.blue)
 
-                TextField("brand", text: $itemName)
+                TextField("brand", text: $itemBrand)
                     .frame(width: 150)
 
             }
@@ -64,9 +68,27 @@ struct ShoppingItemView: View {
 
     }
     private func saveNewItem() {
-        print("Save item!")
+        print("Saving item!")
+        addItemToPersistence()
+        print("Saved item!")
         self.presentationMode.wrappedValue.dismiss()
         print("Dismissed")
+    }
+
+    private func addItemToPersistence() {
+        withAnimation {
+            let newItem = ShoppingItem(context: viewContext)
+            newItem.name = "New"
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 
@@ -77,7 +99,20 @@ struct ShoppingItemView_Previews: PreviewProvider {
 }
 
 struct StatefulShoppingItemView: View {
+    
+    @State var itemName: String = "";
+    @State var itemPriceUnit: String = "0";
+    @State var itemPriceCents: String = "0";
+    @State var itemQuantity: String = "0";
+    @State var itemBrand: String = "";
+    
     var body: some View {
-        ShoppingItemView()
+        ShoppingItemView(
+            itemName: $itemName,
+            itemPriceUnit: $itemPriceUnit,
+            itemPriceCents:$itemPriceCents,
+            itemQuantity: $itemQuantity,
+            itemBrand: $itemBrand
+        ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

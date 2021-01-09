@@ -11,6 +11,12 @@ struct ShoppingListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
 
+    @State var itemName: String = "";
+    @State var itemPriceUnit: String = "0";
+    @State var itemPriceCents: String = "0";
+    @State var itemQuantity: String = "0";
+    @State var itemBrand: String = "";
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingItem.name, ascending: true)],
         animation: .default)
@@ -38,7 +44,13 @@ struct ShoppingListView: View {
                 HStack {
                     EditButton()
                         .padding()
-                    NavigationLink(destination: ShoppingItemView()) {
+                    NavigationLink(destination: ShoppingItemView(
+                        itemName: $itemName,
+                        itemPriceUnit: $itemPriceUnit,
+                        itemPriceCents:$itemPriceCents,
+                        itemQuantity: $itemQuantity,
+                        itemBrand: $itemBrand
+                    )) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
@@ -49,22 +61,6 @@ struct ShoppingListView: View {
     
     private func finishShopping() {
         self.presentationMode.wrappedValue.dismiss()
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = ShoppingItem(context: viewContext)
-            newItem.name = "New"
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -90,7 +86,6 @@ struct ShoppingListView_Previews: PreviewProvider {
 }
 
 struct ShoppingListPreviewWrapper: View {
-    
     var body: some View {
         ShoppingListView().previewDevice("iPhone 11").environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
