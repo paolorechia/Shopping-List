@@ -16,21 +16,21 @@ struct ShoppingListView: View {
     private var items: FetchedResults<ShoppingItem>
 
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("\(item.name!)")
+            List {
+                ForEach(items) { item in
+                    Text("\(item.name!)")
+                }
+                .onDelete(perform: deleteItems)
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+            .toolbar {
+                HStack {
+                    EditButton()
+                        .padding()
+                    NavigationLink(destination: ShoppingItemView()) {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                }
             }
-        }
     }
 
     private func addItem() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524EAEEB25AA381000F29AB5 /* ShoppingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EAEEA25AA381000F29AB5 /* ShoppingItemView.swift */; };
 		52B7811A25AA244D0061A40B /* ShoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7811925AA244D0061A40B /* ShoppingListApp.swift */; };
 		52B7811C25AA244D0061A40B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B7811B25AA244D0061A40B /* ContentView.swift */; };
 		52B7811E25AA244E0061A40B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B7811D25AA244E0061A40B /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		524EAEEA25AA381000F29AB5 /* ShoppingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemView.swift; sourceTree = "<group>"; };
 		52B7811625AA244D0061A40B /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B7811925AA244D0061A40B /* ShoppingListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListApp.swift; sourceTree = "<group>"; };
 		52B7811B25AA244D0061A40B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				52B7811B25AA244D0061A40B /* ContentView.swift */,
 				52B7815F25AA2F680061A40B /* ShoppingListView.swift */,
+				524EAEEA25AA381000F29AB5 /* ShoppingItemView.swift */,
 				52B7816725AA30680061A40B /* MainView.swift */,
 				52B7816C25AA308A0061A40B /* HistoryListView.swift */,
 			);
@@ -305,6 +308,7 @@
 				52B7816025AA2F680061A40B /* ShoppingListView.swift in Sources */,
 				52B7815025AA26CF0061A40B /* ShoppingEvent+CoreDataClass.swift in Sources */,
 				52B7812325AA244E0061A40B /* Persistence.swift in Sources */,
+				524EAEEB25AA381000F29AB5 /* ShoppingItemView.swift in Sources */,
 				52B7816825AA30680061A40B /* MainView.swift in Sources */,
 				52B7815325AA26CF0061A40B /* ShoppingItem+CoreDataProperties.swift in Sources */,
 				52B7812625AA244E0061A40B /* ShoppingList.xcdatamodeld in Sources */,
