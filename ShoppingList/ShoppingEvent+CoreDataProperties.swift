@@ -2,7 +2,7 @@
 //  ShoppingEvent+CoreDataProperties.swift
 //  ShoppingList
 //
-//  Created by Paolo on 09/01/21.
+//  Created by Paolo on 10/01/21.
 //
 //
 
@@ -17,6 +17,7 @@ extension ShoppingEvent {
     }
 
     @NSManaged public var dateOfEvent: Date?
+    @NSManaged public var id: UUID?
     @NSManaged public var shoppingItems: NSSet?
 
 }

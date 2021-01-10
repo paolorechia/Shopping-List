@@ -12,6 +12,7 @@ struct ShoppingItemView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
+    var itemId: Optional<UUID>;
     @State var itemName: String;
     @State var itemPriceUnit: String;
     @State var itemPriceCents: String;
@@ -93,7 +94,7 @@ struct ShoppingItemView: View {
         }
         .font(.title)
         .padding()
-        .navigationTitle("Add Item")
+        .navigationTitle(itemId != nil ? "Edit Item" : "New Item")
     }
 
     private func saveNewItem() {
@@ -101,14 +102,21 @@ struct ShoppingItemView: View {
         let itemPriceUnitInt: Int = Int($itemPriceUnit.wrappedValue) ?? 0
         let itemPriceCentsInt: Int = Int($itemPriceCents.wrappedValue) ?? 0
         let itemQuantityInt: Int = Int($itemQuantity.wrappedValue) ?? 0
-        addItemToPersistence(
-            name: $itemName.wrappedValue,
-            priceUnit: itemPriceUnitInt,
-            priceCents: itemPriceCentsInt,
-            quantity: itemQuantityInt,
-            brand: $itemBrand.wrappedValue
-        )
-        print("Saved item!")
+        
+        if itemId == nil {
+            addItemToPersistence(
+                name: $itemName.wrappedValue,
+                priceUnit: itemPriceUnitInt,
+                priceCents: itemPriceCentsInt,
+                quantity: itemQuantityInt,
+                brand: $itemBrand.wrappedValue
+            )
+            print("Saved Item!")
+        } else {
+            // TODO
+            print("Editing Item!")
+        }
+
         itemName = ""
         itemPriceUnit = ""
         itemPriceCents = ""
@@ -127,12 +135,12 @@ struct ShoppingItemView: View {
     ) {
         withAnimation {
             let newItem = ShoppingItem(context: viewContext)
+            newItem.id = UUID.init()
             newItem.name = name
             newItem.priceUnit = Int32(priceUnit)
             newItem.priceCents = Int32(priceCents)
             newItem.quantity = Int32(quantity)
             newItem.brand = brand
-
             do {
                 try viewContext.save()
             } catch {
@@ -161,6 +169,7 @@ struct StatefulShoppingItemView: View {
     
     var body: some View {
         ShoppingItemView(
+            itemId: nil,
             itemName: itemName,
             itemPriceUnit: itemPriceUnit,
             itemPriceCents: itemPriceCents,

@@ -2,7 +2,7 @@
 //  ShoppingEvent+CoreDataClass.swift
 //  ShoppingList
 //
-//  Created by Paolo on 09/01/21.
+//  Created by Paolo on 10/01/21.
 //
 //
 

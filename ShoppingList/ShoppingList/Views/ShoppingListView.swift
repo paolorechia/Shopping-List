@@ -30,14 +30,15 @@ struct ShoppingListView: View {
                         VStack {
                             NavigationLink(
                                 destination: ShoppingItemView(
-                                    itemName: item.name ?? "",
+                                    itemId: item.id,
+                                    itemName: item.name,
                                     itemPriceUnit: String(item.priceUnit) ,
                                     itemPriceCents: String(item.priceCents) ,
                                     itemQuantity: String(item.quantity) ,
                                     itemBrand: item.brand ?? ""
                                )
                             ) {
-                                Text("\(item.name!)")
+                                Text("\(item.name)")
                             }
                         }
                     }
@@ -57,6 +58,7 @@ struct ShoppingListView: View {
                     EditButton()
                         .padding()
                     NavigationLink(destination: ShoppingItemView(
+                        itemId: nil,
                         itemName: "",
                         itemPriceUnit: "",
                         itemPriceCents: "",

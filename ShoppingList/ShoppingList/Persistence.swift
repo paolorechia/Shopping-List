@@ -14,7 +14,12 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         let newItem = ShoppingItem(context: viewContext)
+        newItem.id = UUID.init()
         newItem.name = "Feijão"
+        newItem.priceUnit = 3
+        newItem.priceCents = 17
+        newItem.brand = ""
+        newItem.quantity = 1
         do {
             try viewContext.save()
         } catch {
