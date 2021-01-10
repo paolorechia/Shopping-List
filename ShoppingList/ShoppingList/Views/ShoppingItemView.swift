@@ -110,6 +110,12 @@ struct ShoppingItemView: View {
             brand: $itemBrand.wrappedValue
         )
         print("Saved item!")
+        itemName = ""
+        itemPriceUnit = ""
+        itemPriceCents = ""
+        itemQuantity = ""
+        itemBrand = ""
+
         self.presentationMode.wrappedValue.dismiss()
     }
 
