@@ -20,6 +20,7 @@ struct ShoppingItemView: View {
     @State var itemPriceCents: String;
     @State var itemQuantity: String;
     @State var itemBrand: String;
+    @Binding var itemTotalPrice: String;
     
     let currency = "R$"
     
@@ -139,15 +140,18 @@ struct ShoppingItemView: View {
                 // Do something in response to error condition
             }
 
-            
         }
 
+        // Reset View State
         itemName = ""
         itemPriceUnit = ""
         itemPriceCents = ""
         itemQuantity = ""
         itemBrand = ""
 
+        // Update Total Value
+        
+        
         self.presentationMode.wrappedValue.dismiss()
     }
 
@@ -191,6 +195,7 @@ struct StatefulShoppingItemView: View {
     var itemPriceCents: String = "";
     var itemQuantity: String = "";
     var itemBrand: String = "";
+    @State var itemTotal: String = "0";
     
     var body: some View {
         ShoppingItemView(
@@ -199,7 +204,8 @@ struct StatefulShoppingItemView: View {
             itemPriceUnit: itemPriceUnit,
             itemPriceCents: itemPriceCents,
             itemQuantity: itemQuantity,
-            itemBrand: itemBrand
+            itemBrand: itemBrand,
+            itemTotalPrice: $itemTotal
         )
         .environment(
             \.managedObjectContext,

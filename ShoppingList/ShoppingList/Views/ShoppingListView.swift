@@ -17,6 +17,8 @@ struct ShoppingListView: View {
     @State var itemQuantity: String = "";
     @State var itemBrand: String = "";
     
+    @State var itemTotalPrice: String = ""
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingItem.name, ascending: true)],
         animation: .default)
@@ -35,22 +37,34 @@ struct ShoppingListView: View {
                                     itemPriceUnit: String(item.priceUnit) ,
                                     itemPriceCents: String(item.priceCents) ,
                                     itemQuantity: String(item.quantity) ,
-                                    itemBrand: item.brand ?? ""
+                                    itemBrand: item.brand ?? "",
+                                    itemTotalPrice: $itemTotalPrice
                                )
                             ) {
-                                Text("\(item.name)")
+                                HStack {
+                                    Text("\(item.name)")
+                                    Text("R$\(item.priceUnit),\(item.priceCents)")
+                                    Text("\(item.brand ?? "")")
+                                    Text("\(item.quantity)")
+                                }
                             }
                         }
                     }
                     .onDelete(perform: deleteItems)
                 }
-                HStack {
-                    Button(action: finishShopping) {
-                        Text("Finish")
+                VStack {
+                    HStack {
+                        Text("Total: \(itemTotalPrice)")
                     }
-                    .frame(width: 2000, height: 60)
-                    .font(.title2)
-                    .border(Color.blue, width: 1)
+                    .padding()
+                    HStack {
+                        Button(action: finishShopping) {
+                            Text("Finish")
+                        }
+                        .frame(width: 2000, height: 60)
+                        .font(.title2)
+                        .border(Color.blue, width: 1)
+                    }
                 }
             }
             .toolbar(content: {
@@ -63,14 +77,21 @@ struct ShoppingListView: View {
                         itemPriceUnit: "",
                         itemPriceCents: "",
                         itemQuantity: "",
-                        itemBrand: ""
+                        itemBrand: "",
+                        itemTotalPrice: $itemTotalPrice
                     )) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             })
         }.navigationBarHidden(true)
+        .onAppear(perform: onAppearHandler)
+            
 
+    }
+    
+    private func onAppearHandler() {
+        itemTotalPrice = String(Int.random(in: 0..<12))
     }
     
     private func finishShopping() {
