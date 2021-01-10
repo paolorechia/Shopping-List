@@ -26,8 +26,20 @@ struct ShoppingListView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(items) { item in
-                        Text("\(item.name!)")
+                    ForEach(items) { (item: ShoppingItem) in
+                        VStack {
+                            NavigationLink(
+                                destination: ShoppingItemView(
+                                    itemName: item.name ?? "",
+                                    itemPriceUnit: String(item.priceUnit) ,
+                                    itemPriceCents: String(item.priceCents) ,
+                                    itemQuantity: String(item.quantity) ,
+                                    itemBrand: item.brand ?? ""
+                               )
+                            ) {
+                                Text("\(item.name!)")
+                            }
+                        }
                     }
                     .onDelete(perform: deleteItems)
                 }
@@ -45,11 +57,11 @@ struct ShoppingListView: View {
                     EditButton()
                         .padding()
                     NavigationLink(destination: ShoppingItemView(
-                        itemName: $itemName,
-                        itemPriceUnit: $itemPriceUnit,
-                        itemPriceCents:$itemPriceCents,
-                        itemQuantity: $itemQuantity,
-                        itemBrand: $itemBrand
+                        itemName: "",
+                        itemPriceUnit: "",
+                        itemPriceCents: "",
+                        itemQuantity: "",
+                        itemBrand: ""
                     )) {
                         Label("Add Item", systemImage: "plus")
                     }

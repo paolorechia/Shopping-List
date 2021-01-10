@@ -12,13 +12,12 @@ struct ShoppingItemView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @Binding var itemName: String;
-    @Binding var itemPriceUnit: String;
-    @Binding var itemPriceCents: String;
-    @Binding var itemQuantity: String;
-    @Binding var itemBrand: String;
+    @State var itemName: String;
+    @State var itemPriceUnit: String;
+    @State var itemPriceCents: String;
+    @State var itemQuantity: String;
+    @State var itemBrand: String;
     
-    @State var priceString: String = "0,00"
     let currency = "R$"
     
     var body: some View {
@@ -154,19 +153,19 @@ struct ShoppingItemView_Previews: PreviewProvider {
 
 struct StatefulShoppingItemView: View {
     
-    @State var itemName: String = "";
-    @State var itemPriceUnit: String = "";
-    @State var itemPriceCents: String = "";
-    @State var itemQuantity: String = "";
-    @State var itemBrand: String = "";
+    var itemName: String = "";
+    var itemPriceUnit: String = "";
+    var itemPriceCents: String = "";
+    var itemQuantity: String = "";
+    var itemBrand: String = "";
     
     var body: some View {
         ShoppingItemView(
-            itemName: $itemName,
-            itemPriceUnit: $itemPriceUnit,
-            itemPriceCents:$itemPriceCents,
-            itemQuantity: $itemQuantity,
-            itemBrand: $itemBrand
+            itemName: itemName,
+            itemPriceUnit: itemPriceUnit,
+            itemPriceCents: itemPriceCents,
+            itemQuantity: itemQuantity,
+            itemBrand: itemBrand
         )
         .environment(
             \.managedObjectContext,
