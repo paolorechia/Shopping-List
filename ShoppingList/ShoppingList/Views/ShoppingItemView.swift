@@ -19,6 +19,7 @@ struct ShoppingItemView: View {
     @Binding var itemBrand: String;
     
     @State var priceString: String = "0,00"
+    let currency = "R$"
     
     var body: some View {
         VStack {
@@ -31,29 +32,55 @@ struct ShoppingItemView: View {
                     .foregroundColor(Color.blue)
                     .frame(width: 150)
                 TextField("name", text: $itemName)
-                    .frame(width: 150)
+                    .frame(width: 225)
+                    .keyboardType(.numberPad)
             }
-            HStack {
+            .padding()
+            HStack(alignment: .center) {
                 Text("Price")
                     .frame(width: 150)
                     .foregroundColor(Color.blue)
-                TextField("name", text: $priceString)
-                    .frame(width: 150)
+                HStack {
+                    Text(currency)
+                        .foregroundColor(Color.blue)
+                    TextField("units", text: $itemPriceUnit)
+                        .frame(width: 70)
+                        .keyboardType(.numberPad)
+                    Text(",")
+                        .font(.title)
+                        .foregroundColor(Color.blue)
+                    TextField("cents", text: $itemPriceCents)
+                        .keyboardType(.numberPad)
+                }
             }
+            .padding()
             HStack {
                 Text("Quantity")
                     .frame(width: 150)
                     .foregroundColor(Color.blue)
                 TextField("quantity", text: $itemQuantity)
-                    .frame(width: 150)
+                    .frame(width: 180)
             }
+            HStack {
+                Text("Type")
+                    .frame(width: 150)
+                    .foregroundColor(Color.blue)
+                Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Type")) {
+                    Text("Units").tag(1)
+                    Text("Kg").tag(2)
+                    Text("g").tag(2)
+                    Text("L").tag(2)
+                    Text("ml").tag(2)
+                }
+                .frame(width: 220, height: 150)
+            }
+            .padding()
             HStack {
                 Text("Brand")
                     .frame(width: 150)
                     .foregroundColor(Color.blue)
-
                 TextField("brand", text: $itemBrand)
-                    .frame(width: 150)
+                    .frame(width: 225)
 
             }
             .padding()
@@ -62,23 +89,44 @@ struct ShoppingItemView: View {
                     .frame(width: 300, height: 50)
                     .border(Color.blue, width: 1)
             }
+            .padding()
+
         }
+        .font(.title)
         .padding()
         .navigationTitle("Add Item")
-
     }
+
     private func saveNewItem() {
         print("Saving item!")
-        addItemToPersistence()
+        let itemPriceUnitInt: Int = Int($itemPriceUnit.wrappedValue) ?? 0
+        let itemPriceCentsInt: Int = Int($itemPriceCents.wrappedValue) ?? 0
+        let itemQuantityInt: Int = Int($itemQuantity.wrappedValue) ?? 0
+        addItemToPersistence(
+            name: $itemName.wrappedValue,
+            priceUnit: itemPriceUnitInt,
+            priceCents: itemPriceCentsInt,
+            quantity: itemQuantityInt,
+            brand: $itemBrand.wrappedValue
+        )
         print("Saved item!")
         self.presentationMode.wrappedValue.dismiss()
-        print("Dismissed")
     }
 
-    private func addItemToPersistence() {
+    private func addItemToPersistence(
+        name: String,
+        priceUnit: Int,
+        priceCents: Int,
+        quantity: Int,
+        brand: String
+    ) {
         withAnimation {
             let newItem = ShoppingItem(context: viewContext)
-            newItem.name = "New"
+            newItem.name = name
+            newItem.priceUnit = Int32(priceUnit)
+            newItem.priceCents = Int32(priceCents)
+            newItem.quantity = Int32(quantity)
+            newItem.brand = brand
 
             do {
                 try viewContext.save()
@@ -101,9 +149,9 @@ struct ShoppingItemView_Previews: PreviewProvider {
 struct StatefulShoppingItemView: View {
     
     @State var itemName: String = "";
-    @State var itemPriceUnit: String = "0";
-    @State var itemPriceCents: String = "0";
-    @State var itemQuantity: String = "0";
+    @State var itemPriceUnit: String = "";
+    @State var itemPriceCents: String = "";
+    @State var itemQuantity: String = "";
     @State var itemBrand: String = "";
     
     var body: some View {
@@ -113,6 +161,9 @@ struct StatefulShoppingItemView: View {
             itemPriceCents:$itemPriceCents,
             itemQuantity: $itemQuantity,
             itemBrand: $itemBrand
-        ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        )
+        .environment(
+            \.managedObjectContext,
+            PersistenceController.preview.container.viewContext)
     }
 }

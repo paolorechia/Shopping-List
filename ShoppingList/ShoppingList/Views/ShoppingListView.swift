@@ -12,9 +12,9 @@ struct ShoppingListView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @State var itemName: String = "";
-    @State var itemPriceUnit: String = "0";
-    @State var itemPriceCents: String = "0";
-    @State var itemQuantity: String = "0";
+    @State var itemPriceUnit: String = "";
+    @State var itemPriceCents: String = "";
+    @State var itemQuantity: String = "";
     @State var itemBrand: String = "";
     
     @FetchRequest(
