@@ -11,7 +11,7 @@ import Foundation
 class ComputeTotal {
     static var totalPriceUnits: Int32 = 0
     static var totalPriceCents: Int32 = 0
-    
+
     static func update_totals(items: [ShoppingItem]) {
         totalPriceUnits = 0
         totalPriceCents = 0
@@ -29,7 +29,7 @@ class ComputeTotal {
         totalPriceCents += cents
         let newUnits = totalPriceCents / 100
         let remainderCents = totalPriceCents % 100
-        totalPriceUnits += newUnits
+        totalPriceUnits += (units + newUnits)
         totalPriceCents = remainderCents
     }
     

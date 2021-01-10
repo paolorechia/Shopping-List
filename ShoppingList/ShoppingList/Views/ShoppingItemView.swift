@@ -115,6 +115,8 @@ struct ShoppingItemView: View {
                 brand: $itemBrand.wrappedValue
             )
             print("Saved Item!")
+
+            ComputeTotal.add(units: Int32(itemPriceUnitInt), cents: Int32(itemPriceCentsInt))
         } else {
             // TODO
             print("Editing Item!")
@@ -127,6 +129,10 @@ struct ShoppingItemView: View {
                 print("Fetching")
                 let fetchedEntities = try viewContext.fetch(fetchRequest) as! [ShoppingItem]
                 print("Got it, unpacking first")
+                
+                let oldUnitsValue: Int32 = fetchedEntities.first!.priceUnit
+                let oldCentsValue: Int32 = fetchedEntities.first!.priceCents
+
                 fetchedEntities.first?.name = $itemName.wrappedValue
                 fetchedEntities.first?.priceUnit = Int32(itemPriceUnitInt)
                 fetchedEntities.first?.priceCents = Int32(itemPriceCentsInt)
@@ -134,23 +140,26 @@ struct ShoppingItemView: View {
                 fetchedEntities.first?.brand = $itemBrand.wrappedValue
 
 
-                print("Updated!!")
+                print("Updated!! Let's update Total")
+                // TODO add update logic
+//                if (itemPriceUnitInt > Int(oldUnitsValue!)) {
+//                    ComputeTotal.add(units: (Int32(itemPriceUnitInt) - oldUnitsValue!), cents: 0)
+//                    ComputeTotal.add(units: 0, cents: (Int32(itemPriceCentsInt) - oldCentsValue))
+//
+//                }
+                
                 // ... Update additional properties with new values
             } catch {
                 // Do something in response to error condition
             }
 
         }
-
         // Reset View State
         itemName = ""
         itemPriceUnit = ""
         itemPriceCents = ""
         itemQuantity = ""
         itemBrand = ""
-
-        // Update Total Value
-        
         
         self.presentationMode.wrappedValue.dismiss()
     }

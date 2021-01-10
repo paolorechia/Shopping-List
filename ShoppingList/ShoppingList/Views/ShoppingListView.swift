@@ -16,7 +16,6 @@ struct ShoppingListView: View {
     @State var itemPriceCents: String = "";
     @State var itemQuantity: String = "";
     @State var itemBrand: String = "";
-    
     @State var itemTotalPrice: String = ""
     
     @FetchRequest(
@@ -91,7 +90,12 @@ struct ShoppingListView: View {
     }
     
     private func onAppearHandler() {
-        itemTotalPrice = String(Int.random(in: 0..<12))
+        var shoppingItems: [ShoppingItem] = []
+        for item in items {
+            shoppingItems.append(item)
+        }
+        ComputeTotal.update_totals(items: shoppingItems)
+        itemTotalPrice = "\(ComputeTotal.totalPriceUnits),\(ComputeTotal.totalPriceCents)"
     }
     
     private func finishShopping() {
