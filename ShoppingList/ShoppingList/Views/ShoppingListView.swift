@@ -11,13 +11,13 @@ struct ShoppingListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
 
+    @ObservedObject var totalObject = ComputeTotal()
     @State var itemName: String = "";
     @State var itemPriceUnit: String = "";
     @State var itemPriceCents: String = "";
     @State var itemQuantity: String = "";
     @State var itemBrand: String = "";
-    @State var itemTotalPrice: String = ""
-    
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingItem.name, ascending: true)],
         animation: .default)
@@ -37,7 +37,7 @@ struct ShoppingListView: View {
                                     itemPriceCents: String(item.priceCents) ,
                                     itemQuantity: String(item.quantity) ,
                                     itemBrand: item.brand ?? "",
-                                    itemTotalPrice: $itemTotalPrice
+                                    totalObject: totalObject
                                )
                             ) {
                                 HStack {
@@ -53,7 +53,7 @@ struct ShoppingListView: View {
                 }
                 VStack {
                     HStack {
-                        Text("Total: \(itemTotalPrice)")
+                        Text("Total: \(totalObject.totalItemPrice)")
                     }
                     .padding()
                     HStack {
@@ -77,7 +77,7 @@ struct ShoppingListView: View {
                         itemPriceCents: "",
                         itemQuantity: "",
                         itemBrand: "",
-                        itemTotalPrice: $itemTotalPrice
+                        totalObject: totalObject
                     )) {
                         Label("Add Item", systemImage: "plus")
                     }
@@ -94,8 +94,7 @@ struct ShoppingListView: View {
         for item in items {
             shoppingItems.append(item)
         }
-        ComputeTotal.update_totals(items: shoppingItems)
-        itemTotalPrice = "\(ComputeTotal.totalPriceUnits),\(ComputeTotal.totalPriceCents)"
+        totalObject.update_totals(items: shoppingItems)
     }
     
     private func finishShopping() {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 
 struct ShoppingItemView: View {
@@ -20,8 +21,9 @@ struct ShoppingItemView: View {
     @State var itemPriceCents: String;
     @State var itemQuantity: String;
     @State var itemBrand: String;
-    @Binding var itemTotalPrice: String;
-    
+
+    @ObservedObject var totalObject: ComputeTotal
+
     let currency = "R$"
     
     var body: some View {
@@ -115,8 +117,8 @@ struct ShoppingItemView: View {
                 brand: $itemBrand.wrappedValue
             )
             print("Saved Item!")
-
-            ComputeTotal.add(units: Int32(itemPriceUnitInt), cents: Int32(itemPriceCentsInt))
+            totalObject.add(units: Int32(itemPriceUnitInt), cents: Int32(itemPriceCentsInt))
+            print(totalObject.totalPriceUnits)
         } else {
             // TODO
             print("Editing Item!")
@@ -205,7 +207,8 @@ struct StatefulShoppingItemView: View {
     var itemQuantity: String = "";
     var itemBrand: String = "";
     @State var itemTotal: String = "0";
-    
+    @ObservedObject var totalObject = ComputeTotal()
+
     var body: some View {
         ShoppingItemView(
             itemId: nil,
@@ -214,7 +217,7 @@ struct StatefulShoppingItemView: View {
             itemPriceCents: itemPriceCents,
             itemQuantity: itemQuantity,
             itemBrand: itemBrand,
-            itemTotalPrice: $itemTotal
+            totalObject: totalObject
         )
         .environment(
             \.managedObjectContext,

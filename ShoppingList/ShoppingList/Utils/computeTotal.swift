@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Combine
 
-
-class ComputeTotal {
-    static var totalPriceUnits: Int32 = 0
-    static var totalPriceCents: Int32 = 0
-
-    static func update_totals(items: [ShoppingItem]) {
+final class ComputeTotal: ObservableObject {
+    @Published var totalPriceUnits: Int32 = 0
+    @Published var totalPriceCents: Int32 = 0
+    @Published var totalItemPrice: String = "0,00"
+    
+    func update_totals(items: [ShoppingItem]) {
         totalPriceUnits = 0
         totalPriceCents = 0
         for item in items {
@@ -23,21 +24,28 @@ class ComputeTotal {
         let remainderCents = totalPriceCents % 100
         totalPriceUnits += newUnits
         totalPriceCents = remainderCents
+        updateString()
     }
     
-    static func add(units: Int32, cents: Int32) {
+    func add(units: Int32, cents: Int32) {
         totalPriceCents += cents
         let newUnits = totalPriceCents / 100
         let remainderCents = totalPriceCents % 100
         totalPriceUnits += (units + newUnits)
         totalPriceCents = remainderCents
+        updateString()
     }
     
-    static func subtract(units: Int32, cents: Int32) {
+    func subtract(units: Int32, cents: Int32) {
         totalPriceCents -= cents
         if totalPriceCents < 0 {
             totalPriceCents = 100 + totalPriceCents
             totalPriceUnits = totalPriceUnits - 1
         }
+        updateString()
+    }
+    
+    func updateString() {
+        totalItemPrice = "\(totalPriceUnits),\(totalPriceCents)"
     }
 }
