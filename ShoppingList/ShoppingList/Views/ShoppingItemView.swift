@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreData
+
 
 struct ShoppingItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -115,6 +117,29 @@ struct ShoppingItemView: View {
         } else {
             // TODO
             print("Editing Item!")
+            print("Defining request/predicate")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ShoppingItem")
+            let predicate = NSPredicate(format: "id = %@", argumentArray: [itemId!])
+            fetchRequest.predicate = predicate
+
+            do {
+                print("Fetching")
+                let fetchedEntities = try viewContext.fetch(fetchRequest) as! [ShoppingItem]
+                print("Got it, unpacking first")
+                fetchedEntities.first?.name = $itemName.wrappedValue
+                fetchedEntities.first?.priceUnit = Int32(itemPriceUnitInt)
+                fetchedEntities.first?.priceCents = Int32(itemPriceCentsInt)
+                fetchedEntities.first?.quantity = Int32(itemQuantityInt)
+                fetchedEntities.first?.brand = $itemBrand.wrappedValue
+
+
+                print("Updated!!")
+                // ... Update additional properties with new values
+            } catch {
+                // Do something in response to error condition
+            }
+
+            
         }
 
         itemName = ""
