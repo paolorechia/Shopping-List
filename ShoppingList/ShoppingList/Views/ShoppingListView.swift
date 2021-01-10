@@ -90,6 +90,10 @@ struct ShoppingListView: View {
     }
     
     private func onAppearHandler() {
+        updateItemsTotals()
+    }
+    
+    private func updateItemsTotals() {
         var shoppingItems: [ShoppingItem] = []
         for item in items {
             shoppingItems.append(item)
@@ -102,11 +106,24 @@ struct ShoppingListView: View {
     }
 
     private func deleteItems(offsets: IndexSet) {
+        var totalUnitsSubtracted: Int32 = 0
+        var totalCentsSubtracted: Int32 = 0
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            offsets.forEach {
+                print("Iterating...")
+                let item = items[$0]
+                totalUnitsSubtracted += item.priceUnit
+                totalCentsSubtracted += item.priceCents
+                viewContext.delete(item)
+            }
             do {
+                print("Saving...")
                 try viewContext.save()
+                print("Subtracting...")
+                DispatchQueue.main.async {
+                    updateItemsTotals()
+                }
+
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

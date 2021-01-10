@@ -38,6 +38,7 @@ final class ComputeTotal: ObservableObject {
     
     func subtract(units: Int32, cents: Int32) {
         totalPriceCents -= cents
+        totalPriceUnits -= units
         if totalPriceCents < 0 {
             totalPriceCents = 100 + totalPriceCents
             totalPriceUnits = totalPriceUnits - 1
