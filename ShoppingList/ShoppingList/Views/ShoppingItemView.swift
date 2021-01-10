@@ -23,9 +23,10 @@ struct ShoppingItemView: View {
     @State var itemBrand: String;
 
     @ObservedObject var totalObject: ComputeTotal
+    var items: FetchedResults<ShoppingItem>
 
     let currency = "R$"
-    
+        
     var body: some View {
         VStack {
             Image(systemName: "bag")
@@ -131,9 +132,6 @@ struct ShoppingItemView: View {
                 print("Fetching")
                 let fetchedEntities = try viewContext.fetch(fetchRequest) as! [ShoppingItem]
                 print("Got it, unpacking first")
-                
-                let oldUnitsValue: Int32 = fetchedEntities.first!.priceUnit
-                let oldCentsValue: Int32 = fetchedEntities.first!.priceCents
 
                 fetchedEntities.first?.name = $itemName.wrappedValue
                 fetchedEntities.first?.priceUnit = Int32(itemPriceUnitInt)
@@ -141,16 +139,8 @@ struct ShoppingItemView: View {
                 fetchedEntities.first?.quantity = Int32(itemQuantityInt)
                 fetchedEntities.first?.brand = $itemBrand.wrappedValue
 
-
                 print("Updated!! Let's update Total")
-                // TODO add update logic
-//                if (itemPriceUnitInt > Int(oldUnitsValue!)) {
-//                    ComputeTotal.add(units: (Int32(itemPriceUnitInt) - oldUnitsValue!), cents: 0)
-//                    ComputeTotal.add(units: 0, cents: (Int32(itemPriceCentsInt) - oldCentsValue))
-//
-//                }
-                
-                // ... Update additional properties with new values
+                updateItemsTotals()
             } catch {
                 // Do something in response to error condition
             }
@@ -191,6 +181,15 @@ struct ShoppingItemView: View {
             }
         }
     }
+
+    private func updateItemsTotals() {
+        var shoppingItems: [ShoppingItem] = []
+        for item in items {
+            shoppingItems.append(item)
+        }
+        totalObject.update_totals(items: shoppingItems)
+    }
+
 }
 
 struct ShoppingItemView_Previews: PreviewProvider {
@@ -208,6 +207,10 @@ struct StatefulShoppingItemView: View {
     var itemBrand: String = "";
     @State var itemTotal: String = "0";
     @ObservedObject var totalObject = ComputeTotal()
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingItem.name, ascending: true)],
+        animation: .default)
+    private var items: FetchedResults<ShoppingItem>
 
     var body: some View {
         ShoppingItemView(
@@ -217,7 +220,8 @@ struct StatefulShoppingItemView: View {
             itemPriceCents: itemPriceCents,
             itemQuantity: itemQuantity,
             itemBrand: itemBrand,
-            totalObject: totalObject
+            totalObject: totalObject,
+            items: items
         )
         .environment(
             \.managedObjectContext,

@@ -37,7 +37,8 @@ struct ShoppingListView: View {
                                     itemPriceCents: String(item.priceCents) ,
                                     itemQuantity: String(item.quantity) ,
                                     itemBrand: item.brand ?? "",
-                                    totalObject: totalObject
+                                    totalObject: totalObject,
+                                    items: items
                                )
                             ) {
                                 HStack {
@@ -77,7 +78,8 @@ struct ShoppingListView: View {
                         itemPriceCents: "",
                         itemQuantity: "",
                         itemBrand: "",
-                        totalObject: totalObject
+                        totalObject: totalObject,
+                        items: items
                     )) {
                         Label("Add Item", systemImage: "plus")
                     }
